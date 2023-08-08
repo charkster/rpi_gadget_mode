@@ -5,7 +5,7 @@ These steps allow for both **normal** operation and **USB gadget mode**. For **h
 
 **Steps:**
 
-(1) Become superuser (sudo -i) do all the following steps...
+(1) Become superuser (sudo -i) and do all the following steps...
 
 (2) Make backup copies of /boot/config.txt and /boot/cmdline.txt
 
