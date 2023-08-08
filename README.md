@@ -1,7 +1,7 @@
 # rpi_gadget_mode
 Instructions for enabling **USB (ethernet) gadget mode** on **RPi 4 and RPi Zero 2W**. All you need is a USB 2.0 Type C cable for RPi 4, or a USB 2.0 micro usb for RPi Zero 2W. OTG cable **NOT** needed.
 
-These steps allow for both **normal** operation and **USB gadget mode**. For **home use** gadget mode is effectively **worthless**, as the RPi can operate headless and can be connect to using VNC or XRDP. **At work** gadget mode is **useful** as BYOD (Bring Your Own Device) devices are not allowed to connect to the corporate network. If I want to use my work monitor, keyboard and mouse with the RPi I would need to disconnect them from my company device and connect them to the RPi (this would be an additional cable connection to the monitor and moving the wireless keyboard/mouse dongle to the RPi). In gadget mode the RPi still uses the BYOD wifi, but my **remote desktop connection is over USB cable**. No more switching the monitor/keyboard/mouse connections.
+These steps allow for both **normal** operation and **USB gadget mode**. For **home use** gadget mode is effectively **worthless**, as the RPi can operate **headless** and can be connected to using VNC or XRDP. **At work** gadget mode is **useful** as BYOD (Bring Your Own Device) devices are not allowed to connect to the corporate network. My work monitor/keyboard/mouse needs to be disconnected from my company laptop and then connected to the RPi (a pain in the ass). In gadget mode the RPi will still use the BYOD wifi for internet access, but the **remote desktop connection is over USB cable**. No more switching the monitor/keyboard/mouse connections (hoorah!)
 
 **Steps:**
 
@@ -9,7 +9,7 @@ These steps allow for both **normal** operation and **USB gadget mode**. For **h
 
 (2) Make backup copies of /boot/config.txt and /boot/cmdline.txt
 
-(3) Edit **/boot/config.txt** by adding the following line to the end of the file:
+(3) Edit **/boot/config.txt** by appending the following line to the end of the file:
 
 **dtoverlay=dwc2**
 
@@ -23,8 +23,15 @@ These steps allow for both **normal** operation and **USB gadget mode**. For **h
 
 (6) Make a backup copy of /etc/sysctl.conf
 
-(7) Edit **/etc/sysctl.conf** and add the following line to the end of the file:
+(7) Edit **/etc/sysctl.conf** and append the following line to the end of the file (this allows **normal mode**, when not a gadget):
 
 **net.ipv4.conf.all.ignore_routes_with_linkdown=1**
 
 That's it.
+
+Here are the **steps** I needed to follow on [Ubuntu](https://github.com/charkster/rpi_gadget_mode/blob/main/ubuntu_install_instructions.md)
+and [Windows 10](https://github.com/charkster/rpi_gadget_mode/blob/main/windows_install_instructions.md)
+
+I used this [forum_post](https://forums.raspberrypi.com/viewtopic.php?t=306121&sid=6f23dece3a28a0281b971be8b0ec9763&start=25) as my starting point for the above instructions (thank you!)
+
+The Windows driver mod-duo-rndis.zip (INF and CAT files) were found on Github here: https://github.com/dukelec/mbrush/tree/master/doc/win_driver
