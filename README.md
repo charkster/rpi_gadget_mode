@@ -1,7 +1,7 @@
 # rpi_gadget_mode
 Instructions for enabling USB (ethernet) gadget mode on RPi 4 and RPi Zero 2W.
 
-These steps allow for both **normal** operation and **USB gadget mode**. For **home use** gadget mode is effectively **worthless**, as the RPi can operate headless and I can connect to it using VNC or XRDP. **At work** gadget mode is **usefull** as BYOD (Bring Your Own Device) devices are not allowed to connect to the corporate network. If I want to use my work monitor, keyboard and mouse with the RPi I would need to disconnect them from my company device and connect them to the RPi (this would be an addition cable connection to the monitor and moving the wireless keyboard/mouse dongle to the RPi). In gadget mode I still have the RPi still use the BYOD wifi, but my **remote desktop connection is over USB cable**. No more switching the monitor/keyboard/mouse.
+These steps allow for both **normal** operation and **USB gadget mode**. For **home use** gadget mode is effectively **worthless**, as the RPi can operate headless and I can connect to it using VNC or XRDP. **At work** gadget mode is **useful** as BYOD (Bring Your Own Device) devices are not allowed to connect to the corporate network. If I want to use my work monitor, keyboard and mouse with the RPi I would need to disconnect them from my company device and connect them to the RPi (this would be an additional cable connection to the monitor and moving the wireless keyboard/mouse dongle to the RPi). In gadget mode the RPi still uses the BYOD wifi, but my **remote desktop connection is over USB cable**. No more switching the monitor/keyboard/mouse connections.
 
 **Steps:**
 
