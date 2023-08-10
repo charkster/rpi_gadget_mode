@@ -19,7 +19,7 @@ These steps allow for both **normal** operation and **USB gadget mode**. For **h
 
 (5) Create a new udev rule file. Create **/etc/udev/rules.d/90-usb-gadget.rules** and insert the following:
 
-**SUBSYSTEM=="net",ACTION=="add",KERNEL=="usb0",RUN+="/sbin/ifconfig usb0 192.168.1.2 netmask 255.255.255.0",RUN+="/usr/bin/python -c 'import time; time.sleep(20)'",RUN+="/sbin/ip route add default via 192.168.1.1 dev usb0"**
+**SUBSYSTEM=="net",ACTION=="add",KERNEL=="usb0",RUN+="/sbin/ifconfig usb0 192.168.1.2 netmask 255.255.255.0",RUN+="/usr/bin/python -c 'import time; time.sleep(20)'",RUN+="/sbin/ip route add 192.168.1.1 dev usb0"**
 
 (6) Make a backup copy of /etc/sysctl.conf
 
