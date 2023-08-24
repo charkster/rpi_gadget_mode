@@ -35,3 +35,23 @@ and [Windows 10](https://github.com/charkster/rpi_gadget_mode/blob/main/windows_
 I used this [forum_post](https://forums.raspberrypi.com/viewtopic.php?t=306121&sid=6f23dece3a28a0281b971be8b0ec9763&start=25) as my starting point for the above instructions (thank you!)
 
 The Windows driver mod-duo-rndis.zip (INF and CAT files) were found on Github here: https://github.com/dukelec/mbrush/tree/master/doc/win_driver
+
+# Additional Steps for XRDP using pi user
+
+sudo apt-get install xrdp
+
+sudo adduser xrdp ssl-cert
+
+sudo vi /etc/X11/xrdp/xorg.conf
+
+Find :
+
+Option "DRMDevice" "/dev/dri/renderD128"
+
+Replace with:
+
+#Option "DRMDevice" "/dev/dri/renderD128"
+
+Option "DRMDevice" ""
+
+**That's it.**
