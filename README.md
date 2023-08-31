@@ -11,21 +11,21 @@ These steps allow for both **normal** operation and **USB gadget mode**. For **h
 
 (3) Edit **/boot/config.txt** by appending the following line to the end of the file:
 
-**dtoverlay=dwc2**
+``` dtoverlay=dwc2 ```
 
 (4) Edit **/boot/config.txt** by inserting the following text between **rootwait** and **quiet**
 
-**modules-load=dwc2,g_ether g_ether.dev_addr=12:34:56:78:9a:bc g_ether.host_addr=16:23:45:78:9a:bc**
+``` modules-load=dwc2,g_ether g_ether.dev_addr=12:34:56:78:9a:bc g_ether.host_addr=16:23:45:78:9a:bc ```
 
 (5) Create a new udev rule file. Create **/etc/udev/rules.d/90-usb-gadget.rules** and insert the following:
 
-**SUBSYSTEM=="net",ACTION=="add",KERNEL=="usb0",RUN+="/sbin/ifconfig usb0 192.168.1.2 netmask 255.255.255.0",RUN+="/usr/bin/python -c 'import time; time.sleep(20)'",RUN+="/sbin/ip route add 192.168.1.1 dev usb0"**
+``` SUBSYSTEM=="net",ACTION=="add",KERNEL=="usb0",RUN+="/sbin/ifconfig usb0 192.168.1.2 netmask 255.255.255.0",RUN+="/usr/bin/python -c 'import time; time.sleep(20)'",RUN+="/sbin/ip route add 192.168.1.1 dev usb0" ```
 
 (6) Make a backup copy of /etc/sysctl.conf
 
 (7) Edit **/etc/sysctl.conf** and append the following line to the end of the file (this allows **normal mode**, when not a gadget):
 
-**net.ipv4.conf.all.ignore_routes_with_linkdown=1**
+``` net.ipv4.conf.all.ignore_routes_with_linkdown=1 ```
 
 That's it.
 
@@ -37,21 +37,55 @@ I used this [forum_post](https://forums.raspberrypi.com/viewtopic.php?t=306121&s
 The Windows driver mod-duo-rndis.zip (INF and CAT files) were found on Github here: https://github.com/dukelec/mbrush/tree/master/doc/win_driver
 
 # Additional Steps for XRDP using pi user
-
+```
 sudo apt-get install xrdp
-
 sudo adduser xrdp ssl-cert
-
+```
+```
 sudo vi /etc/X11/xrdp/xorg.conf
+```
 
 Find :
 
-Option "DRMDevice" "/dev/dri/renderD128"
+``` Option "DRMDevice" "/dev/dri/renderD128" ```
 
 Replace with:
-
+```
 #Option "DRMDevice" "/dev/dri/renderD128"
-
 Option "DRMDevice" ""
+```
 
 **That's it.**
+
+# Additional Steps for XRDP on RPi Zero 2W
+
+On your PI, create a file /usr/bin/startlxde-pi-xrdp with the following contents:-
+
+```
+#!/bin/sh
+# See https://github.com/neutrinolabs/xrdp/discussions/2050
+
+if [ -n "$XRDP_SESSION" ]; then
+    # Override vcgencmd to return no memory. This causes the
+    # openbox window manager to be used instead of mutter
+    vcgencmd()
+    {
+        if [ $1/$2 = get_config/total_mem ]; then
+            echo total_mem=0
+        else
+            echo "** Fix stub vcgencmd for $*" >&2
+            false
+        fi
+    }
+fi
+
+. /usr/bin/startlxde-pi
+```
+
+Make the script executable with ``` sudo chmod +x /usr/bin/startlxde-pi-xrdp. ```
+
+If you've only got one user on your PI, you can configure the PI to use this script for X sessions with this comand:-
+```
+ln -sf /usr/bin/startlxde-pi-xrdp ~/.xsession
+```
+**Remeber to reduce your GPU memory on the RPi Zero 2W to 16MB (default is 64MB)**
