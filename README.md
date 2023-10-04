@@ -30,7 +30,7 @@ These steps allow for both **normal** operation and **USB gadget mode**. For **h
 That's it.
 
 Here are the **steps** I needed to follow on [Ubuntu](https://github.com/charkster/rpi_gadget_mode/blob/main/ubuntu_install_instructions.md)
-and [Windows 10](https://github.com/charkster/rpi_gadget_mode/blob/main/windows_10_install_instructions.md)
+, [Windows 10](https://github.com/charkster/rpi_gadget_mode/blob/main/windows_10_install_instructions.md) and [MacOS](https://github.com/charkster/rpi_gadget_mode/blob/main/images/macos_rpi_gadget_config.png)
 
 I used this [forum_post](https://forums.raspberrypi.com/viewtopic.php?t=306121&sid=6f23dece3a28a0281b971be8b0ec9763&start=25) as my starting point for the above instructions (thank you!)
 
