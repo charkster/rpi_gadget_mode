@@ -13,7 +13,7 @@ These steps allow for both **normal** operation and **USB gadget mode**. For **h
 
 ``` dtoverlay=dwc2 ```
 
-(4) Edit **/boot/config.txt** by inserting the following text between **rootwait** and **quiet**
+(4) Edit **/boot/cmdline.txt** by inserting the following text between **rootwait** and **quiet**
 
 ``` modules-load=dwc2,g_ether g_ether.dev_addr=12:34:56:78:9a:bc g_ether.host_addr=16:23:45:78:9a:bc ```
 
