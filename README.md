@@ -89,3 +89,15 @@ If you've only got one user on your PI, you can configure the PI to use this scr
 ln -sf /usr/bin/startlxde-pi-xrdp ~/.xsession
 ```
 **Remeber to reduce your GPU memory on the RPi Zero 2W to 16MB (default is 64MB)**
+
+# Additional Steps for REALVNC server compatibility with Remmina
+
+Edit **/root/.vnc/config.d/vncserver-x11** and add:
+```
+Encryption=PreferOn
+Authentication=VncAuth
+```
+**Run this to set the VncAuth password:**
+```
+sudo vncpasswd -legacy -service
+```
