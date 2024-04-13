@@ -88,8 +88,13 @@ If you've only got one user on your PI, you can configure the PI to use this scr
 ```
 ln -sf /usr/bin/startlxde-pi-xrdp ~/.xsession
 ```
-**Remeber to reduce your GPU memory on the RPi Zero 2W to 16MB (default is 64MB)**
+**Remeber to increase your swap size:** ```sudo vi /etc/dphys-swapfile```
 
+Make these changes (make sure they are not commented-out)"
+```
+CONF_SWAPSIZE=1024
+CONF_MAXSWAP=2048
+```
 # Additional Steps for REALVNC server compatibility with Remmina
 
 Edit **/root/.vnc/config.d/vncserver-x11** and add:
