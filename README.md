@@ -115,11 +115,11 @@ I wanted to try using my RPi Zero 2W as REPL device (similar to MicroPython), by
 
 (2) Make backup copies of /boot/config.txt and /boot/cmdline.txt
 
-(3) Edit **/boot/config.txt** by appending the following line to the end of the file:
+(3) Edit **/boot/firmware/config.txt** by appending the following line to the end of the file:
 
 ``` dtoverlay=dwc2 ```
 
-(4) Edit **/boot/cmdline.txt** by inserting the following text after **rootwait**
+(4) Edit **/boot/firmware/cmdline.txt** by inserting the following text after **rootwait**
 
 ``` modules-load=dwc2,g_serial ```
 
