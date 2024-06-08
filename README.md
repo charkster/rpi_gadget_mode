@@ -129,9 +129,8 @@ I wanted to try using my RPi Zero 2W as REPL device (similar to MicroPython), by
 
 (6) Connect at 115200 baudrate
 
- ``` cu -s 115200 -l /dev/ttyACM0 ```
+``` cu -s 115200 -l /dev/ttyACM0 ```
 
 That's it. Make sure if you are using Linux to connect to the serial gadget that the user is part of the dialout group:
 
-￼
- ``` sudo usermod -a -G dialout $USER ```
+``` sudo usermod -a -G dialout $USER ```
