@@ -106,3 +106,32 @@ Authentication=VncAuth
 ```
 sudo vncpasswd -legacy -service
 ```
+# USB Serial Gadget Mode (separate from above topics)
+I wanted to try using my RPi Zero 2W as REPL device (similar to MicroPython), by doing a Raspberry Pi OS Lite install and connecting to it using the USB cable as a serial device (TTY login).
+
+**Steps:**
+
+(1) Become superuser (sudo -i) and do all the following steps...
+
+(2) Make backup copies of /boot/config.txt and /boot/cmdline.txt
+
+(3) Edit **/boot/config.txt** by appending the following line to the end of the file:
+
+``` dtoverlay=dwc2 ```
+
+(4) Edit **/boot/cmdline.txt** by inserting the following text after **rootwait**
+
+``` modules-load=dwc2,g_serial ```
+
+(5) Create a symbolic link to getty@.service for the gadget serial port 
+
+``` ln -s /lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@ttyGS0.service ```
+
+(6) Connect at 115200 baudrate
+
+ ``` cu -s 115200 -l /dev/ttyACM0 ```
+
+That's it. Make sure if you are using Linux to connect to the serial gadget that the user is part of the dialout group:
+
+￼
+ ``` sudo usermod -a -G dialout $USER ```
