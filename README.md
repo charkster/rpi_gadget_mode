@@ -123,9 +123,9 @@ I wanted to try using my RPi Zero 2W as REPL device (similar to MicroPython), by
 
 ``` modules-load=dwc2,g_serial ```
 
-(5) Create a symbolic link to getty@.service for the gadget serial port 
+(5) Create a symbolic link to getty@.service for the gadget serial port (use serial-getty@.service instead of getty@.service to avoid shutdown problems when connecting with wifi ssh)
 
-``` ln -s /lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@ttyGS0.service ```
+``` ln -s /lib/systemd/system/serial-getty@.service /etc/systemd/system/getty.target.wants/getty@ttyGS0.service ```
 
 (6) Connect at 115200 baudrate
 
